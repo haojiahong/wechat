@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BMI计算器</title>
+    <meta name="viewport" content="width=device.width,initial-scale=1">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+	<script type="text/javascript">
+		function compute(){
+			$("#bmiIndex").html();
+			$("#bmiDesc").html();
+			
+			var mass = $("#mass").val();
+			var body=$("#body").val();
+			
+			var bmiIndex = (mass/(body*body)).toFixed(2);
+			var bmiDesc = "";
+			if(bmiIndex<18.5){
+				bmiDesc = "偏瘦";
+			}else if(bmiIndex>=18.5 && bmiIndex<24){
+				bmiDesc = "正常";
+			}else if(bmiIndex>=24 && bmiIndex<28){
+				bmiDesc = "偏胖";
+			}else{
+				bmiDesc = "肥胖";
+			}
+			
+			$("#bmiIndex").html(bmiIndex);
+			$("#bmiDesc").html(bmiDesc);
+			
+			window.location = window.location.href +"#result";
+		}
+	</script>
+  </head>
+  
+  <body>
+    <div data-role="page" id="bmi">
+    	<div data-role="header">
+    		<h1>BMI计算器</h1>
+    	</div>
+		<div data-role="content">
+			<form method="post" action="">
+				<label for="mass">体重：</label>
+				<input type="text" name="mass" id="mass" placeholder="单位：千克"/>
+				
+				<label for="body">身高：</label>
+				<input type="text" name="body" id="body" placeholder="单位：米"/>
+				
+				<a href="#" onclick="compute()" data-role="button" data-theme="e">计算</a>
+			</form>
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<h4>haojiahong</h4>
+		</div>
+    </div>
+     <div data-role="page" id="result" >
+    	<div data-role="header" data-theme="b">
+    		<h1>BMI计算器</h1>
+    	</div>
+
+		<div data-role="content">
+			<div data-role="collapsible" data-collapsed="false" data-theme="d" data-content-theme="c"
+			     data-collapsed-icon="arrow-r" data-expend-icon="arrow-d" data-iconpos="right">
+				<h3>计算结果：</h3>
+				<p>BMI指数：<span id="bmiIndex" style="color:#000FF"></span></p>
+				<p>健康 情况：<span id="bmiDesc" style="color:#000FF"></span></p>
+				     
+			</div>
+		</div>
+		
+		<div data-role="footer" data-theme="b" data-position="fixed">
+		<h4>haojiahong</h4>
+		</div>
+		    
+    </div>
+    
+  </body>
+</html>
